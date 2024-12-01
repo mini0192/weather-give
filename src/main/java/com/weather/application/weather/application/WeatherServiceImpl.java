@@ -8,7 +8,6 @@ import com.weather.application.weather.domain.WeatherTableRepository;
 import com.weather.application.weather.domain.WeatherTableCacheRepository;
 import com.weather.application.weather.presentation.dto.WeatherResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
