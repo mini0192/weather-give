@@ -1,7 +1,7 @@
 package com.weather.application.weather.presentation.dto;
 
 import com.weather.application.config.TimeConfig;
-import com.weather.application.weather.doamin.WeatherTable;
+import com.weather.application.weather.domain.WeatherTable;
 import lombok.Builder;
 
 public class WeatherResponse {

@@ -1,4 +1,4 @@
-package com.weather.application.weather.doamin;
+package com.weather.application.weather.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(
     name = "weather_table",
     indexes = {
-            @Index(name = "idx_date", columnList = "date")
+        @Index(name = "idx_date", columnList = "date")
     }
 )
 @Getter
@@ -22,7 +22,7 @@ public class WeatherTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false, unique = true)
     Long date;
 
     @Column(name = "avg_co2_ppm")

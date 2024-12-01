@@ -5,5 +5,6 @@ import com.weather.application.weather.presentation.dto.WeatherResponse;
 import java.util.List;
 
 public interface WeatherService {
-    List<WeatherResponse.Data> getData(String start, String end);
+    List<WeatherResponse.Data> getListData(String start, String end);
+    WeatherResponse.Data getData(String day);
 }

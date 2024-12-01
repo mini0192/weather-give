@@ -1,16 +1,16 @@
 package com.weather.application.weather.application;
 
 import com.weather.application.config.TimeConfig;
-import com.weather.application.weather.doamin.WeatherTable;
-import com.weather.application.weather.doamin.WeatherRepository;
-import com.weather.application.weather.doamin.WeatherTableCache;
-import com.weather.application.weather.doamin.WeatherTableCacheRepository;
+import com.weather.application.config.exception.NotFoundDataException;
+import com.weather.application.weather.domain.WeatherTable;
+import com.weather.application.weather.domain.WeatherTableCache;
+import com.weather.application.weather.domain.WeatherTableRepository;
+import com.weather.application.weather.domain.WeatherTableCacheRepository;
 import com.weather.application.weather.presentation.dto.WeatherResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,28 +18,28 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WeatherServiceImpl implements WeatherService {
 
-    private final WeatherRepository weatherRepository;
+    private final WeatherTableRepository weatherTableRepository;
     private final WeatherTableCacheRepository weatherTableCacheRepository;
+    private final AsyncService asyncService;
 
     @Override
-    public List<WeatherResponse.Data> getData(String start, String end) {
-        String cacheId = makeCacheId(start, end);
-        Optional<WeatherTableCache> cacheData = weatherTableCacheRepository.findById(cacheId);
-        if(cacheData.isPresent()) return cacheData.get().getWeatherTable();
-
+    public List<WeatherResponse.Data> getListData(String start, String end) {
         long startTime = TimeConfig.stringToUnixTime(start);
         long endTime = TimeConfig.stringToUnixTime(end);
 
-        List<WeatherTable> data = weatherRepository.findByStartAndEndDate(startTime, endTime);
-        List<WeatherResponse.Data> dataList = data.stream().map(WeatherResponse.Data::toDto).toList();
-        weatherTableCacheRepository.save(WeatherTableCache.builder()
-                .id(cacheId)
-                .weatherTable(dataList)
-                .build());
+        List<WeatherTable> data = weatherTableRepository.findByStartAndEndDate(startTime, endTime);
         return data.stream().map(WeatherResponse.Data::toDto).toList();
     }
 
-    private String makeCacheId(String start, String end) {
-        return start + "-" + end;
+    @Override
+    public WeatherResponse.Data getData(String day) {
+        Optional<WeatherTableCache> dataOptional = weatherTableCacheRepository.findById(day);
+        if(dataOptional.isPresent()) return dataOptional.get().getWeatherTable();
+
+        long dayTime = TimeConfig.stringToUnixTime(day);
+        WeatherTable data = weatherTableRepository.findByDate(dayTime).orElseThrow(() -> new NotFoundDataException("데이터가 존재하지 않습니다."));
+        WeatherResponse.Data dto = WeatherResponse.Data.toDto(data);
+        asyncService.caching(day, dto);
+        return dto;
     }
 }

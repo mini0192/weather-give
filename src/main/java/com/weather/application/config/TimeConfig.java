@@ -13,14 +13,14 @@ public class TimeConfig {
         LocalDate date = LocalDate.parse(dateString, formatter);
 
         Instant instant = date.atStartOfDay(ZoneId.systemDefault()).toInstant();
-        return instant.getEpochSecond();
+        return instant.getEpochSecond() + 32400L;
     }
 
     public static String unixTimeToString(Long unixTime) {
         Instant instant = Instant.ofEpochSecond(unixTime);
         LocalDate date = instant.atZone(ZoneId.systemDefault()).toLocalDate();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy. MM. dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         return date.format(formatter);
     }
 }
