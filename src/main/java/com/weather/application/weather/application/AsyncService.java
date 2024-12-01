@@ -18,7 +18,6 @@ public class AsyncService {
                 .id(id)
                 .weatherTable(dto)
                 .build());
-        System.out.println("Done");
     }
 
 }
