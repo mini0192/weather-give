@@ -1,5 +1,5 @@
 # RDBMS 선택 과정
-**rows:** 8,644
+**ROWS:** 8,644
 
 ## 1. 조회 성능 비교
 > **API:** /api/v1/weathers/details?day=20101030
