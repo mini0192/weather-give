@@ -6,18 +6,20 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Entity
-@Table(
-    name = "weather_table",
-    indexes = {
-        @Index(name = "idx_date", columnList = "date")
-    }
-)
+//@Table(
+//    name = "weather_table",
+//    indexes = {
+//        @Index(name = "idx_date", columnList = "date")
+//    }
+//)
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class WeatherTable {
+public class WeatherTable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

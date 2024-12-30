@@ -23,8 +23,8 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public List<WeatherResponse.Data> getListData(String start, String end) {
-        long startTime = TimeConfig.stringToUnixTime(start);
-        long endTime = TimeConfig.stringToUnixTime(end);
+        long startTime = Long.parseLong(start);
+        long endTime = Long.parseLong(end);
 
         List<WeatherTable> data = weatherTableRepository.findByStartAndEndDate(startTime, endTime);
         return data.stream().map(WeatherResponse.Data::toDto).toList();
