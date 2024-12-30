@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Entity
-//@Table(
-//    name = "weather_table",
-//    indexes = {
-//        @Index(name = "idx_date", columnList = "date")
-//    }
-//)
+@Table(
+    name = "weather_table",
+    indexes = {
+        @Index(name = "idx_date", columnList = "date")
+    }
+)
 @Getter
 @Builder
 @NoArgsConstructor
