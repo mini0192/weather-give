@@ -1,4 +1,4 @@
-package com.weather.application.weather.domain;
+package com.weather.application.weather.domain.cache;
 
 import org.springframework.data.repository.CrudRepository;
 

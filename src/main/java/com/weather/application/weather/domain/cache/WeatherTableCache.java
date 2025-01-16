@@ -1,4 +1,4 @@
-package com.weather.application.weather.domain;
+package com.weather.application.weather.domain.cache;
 
 import com.weather.application.weather.presentation.dto.WeatherResponse;
 import jakarta.persistence.Id;
