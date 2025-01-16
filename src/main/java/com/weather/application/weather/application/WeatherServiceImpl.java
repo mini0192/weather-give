@@ -5,10 +5,9 @@ import com.weather.application.config.exception.NotFoundDataException;
 import com.weather.application.weather.domain.WeatherTable;
 import com.weather.application.weather.domain.cache.WeatherTableCache;
 import com.weather.application.weather.domain.WeatherTableRepository;
-import com.weather.application.weather.domain.cache.WeatherTableCacheRepository;
-import com.weather.application.weather.domain.cache.WeatherTableRedisCacheRepository;
 import com.weather.application.weather.presentation.dto.WeatherResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.Optional;
 public class WeatherServiceImpl implements WeatherService {
 
     private final WeatherTableRepository weatherTableRepository;
-    private final WeatherTableCacheRepository weatherTableCacheRepository;
+    private final CrudRepository<WeatherTableCache, String> weatherTableCacheRepository;
     private final AsyncService asyncService;
 
     @Override

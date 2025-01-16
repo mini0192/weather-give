@@ -1,6 +1,7 @@
 package com.weather.application.weather.domain.cache;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Profile("local")
 @Repository
-public class WeatherTableLocalCacheRepository implements WeatherTableCacheRepository {
+public class WeatherTableLocalCacheRepository implements CrudRepository<WeatherTableCache, String> {
 
     Map<String, WeatherTableCache> cacheMap = new ConcurrentHashMap<>();
 
