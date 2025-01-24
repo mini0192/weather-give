@@ -1,4 +1,4 @@
 FROM openjdk:17
-ARG JAR_FILE=build/libs/*.jar
-ADD ${JAR_FILE} docker-springboot.jar
-ENTRYPOINT ["java", "-jar", "/docker-springboot.jar", ">", "app.log"]
+COPY build/libs/*.jar /deploy/app.jar
+EXPOSE 8080
+CMD java -jar -Dserver.port=8080 /deploy/app.jar

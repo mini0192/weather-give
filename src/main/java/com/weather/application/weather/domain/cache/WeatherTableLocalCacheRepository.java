@@ -1,7 +1,6 @@
 package com.weather.application.weather.domain.cache;
 
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
