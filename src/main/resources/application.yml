@@ -1,12 +1,12 @@
 spring:
   profiles:
-    active: redis
+    active: local
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/weather
+    url: jdbc:mysql://mysql/weather
     username: user
-    password: ${password}
+    password: 1234
 
   jpa:
     hibernate:

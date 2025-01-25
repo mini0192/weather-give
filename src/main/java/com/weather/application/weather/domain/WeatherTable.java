@@ -22,29 +22,29 @@ import java.io.Serializable;
 public class WeatherTable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(name = "date", nullable = false, unique = true)
-    Long date;
+    private Long date;
 
     @Column(name = "avg_co2_ppm")
-    Double avgCo2Ppm;
+    private Double avgCo2Ppm;
 
     @Column(name = "avg_ch4_ppb")
-    Double avgCh4Ppb;
+    private Double avgCh4Ppb;
 
     @Column(name = "avg_n2o_ppb")
-    Double avgN2oPpb;
+    private Double avgN2oPpb;
 
     @Column(name = "avg_cfc11_ppt")
-    Double avgCfc11Ppt;
+    private Double avgCfc11Ppt;
 
     @Column(name = "avg_cfc12_ppt")
-    Double avgCfc12Ppt;
+    private Double avgCfc12Ppt;
 
     @Column(name = "avg_cfc113_ppt")
-    Double avgCfc113Ppt;
+    private Double avgCfc113Ppt;
 
     @Column(name = "avg_sf6_ppt")
-    Double avgSf6Ppt;
+    private Double avgSf6Ppt;
 }

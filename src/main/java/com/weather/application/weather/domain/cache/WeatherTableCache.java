@@ -11,6 +11,6 @@ import org.springframework.data.redis.core.RedisHash;
 @RedisHash(value = "WeatherTable", timeToLive = 300)
 public class WeatherTableCache {
     @Id
-    String id;
-    WeatherResponse.Data weatherTable;
+    private String id;
+    private WeatherResponse.Data weatherTable;
 }
